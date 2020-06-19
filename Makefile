@@ -1,11 +1,13 @@
 CC = clang
 CFLAGS = -O
 
+LIBS = -lm
+
 BINDIR = bin
 ODIR = obj
 SDIR = src
 
-_BINS= mergesort quicksort test
+_BINS= mergesort quicksort nderiv
 BINS = $(addprefix $(BINDIR)/,$(_BINS))
 
 _OBJ = $(addsuffix .o,$(_BINS))
@@ -26,7 +28,7 @@ $(ODIR)/%.o: $(SDIR)/%.c
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 $(BINDIR)/%: $(ODIR)/%.o
-	$(CC) -o $@ $^ $(CFLAGS)
+	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
 
 .PHONY: clean
 clean:
