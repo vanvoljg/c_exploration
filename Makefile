@@ -1,6 +1,8 @@
 CC = clang
 CFLAGS = -O
 
+LIBS = -lm
+
 BINDIR = bin
 ODIR = obj
 SDIR = src
@@ -26,7 +28,7 @@ $(ODIR)/%.o: $(SDIR)/%.c
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 $(BINDIR)/%: $(ODIR)/%.o
-	$(CC) -o $@ $^ $(CFLAGS)
+	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
 
 .PHONY: clean
 clean:
